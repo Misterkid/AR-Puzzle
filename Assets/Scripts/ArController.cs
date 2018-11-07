@@ -7,11 +7,14 @@ namespace ARPuzzle
 {
     public class ArController : MonoBehaviour
     {
+        [SerializeField]
+        private Camera firstPersonCamera;
 
-        List<DetectedPlane> detectedPlanes = new List<DetectedPlane>();
+        [SerializeField]
+        private GameObject characterPrefab;
 
-        private List<DetectedPlane> floorPlanes = new List<DetectedPlane>();
-        // Use this for initialization
+        private List<DetectedPlane> detectedPlanes = new List<DetectedPlane>();
+
         void Start()
         {
 
@@ -20,22 +23,46 @@ namespace ARPuzzle
         // Update is called once per frame
         void Update()
         {
-            DetectFloor();
-            //Session.GetTrackables<DetectedPlane>(detectedPlanes);
-        }
-
-        private void DetectObjects()
-        {
-            Debug.Log("ToDo");
-        }
-
-        private void DetectFloor()
-        {
-            Session.GetTrackables<DetectedPlane>(detectedPlanes);
-            for (int i = 0; i < detectedPlanes.Count; i++)
+            // Exit the app when the 'back' button is pressed.
+            if (Input.GetKey(KeyCode.Escape))
             {
-                Debug.Log(detectedPlanes[i].TrackingState);
-                Debug.Log(detectedPlanes[i].CenterPose);
+                Application.Quit();
+            }
+
+            // If the player has not touched the screen, we are done with this update.
+            Touch touch;
+            if (Input.touchCount < 1 || (touch = Input.GetTouch(0)).phase != TouchPhase.Began)
+            {
+                return;
+            }
+            // Raycast against the location the player touched to search for planes.
+            TrackableHit hit;
+            TrackableHitFlags raycastFilter = TrackableHitFlags.PlaneWithinPolygon |
+                TrackableHitFlags.FeaturePointWithSurfaceNormal;
+
+            if (Frame.Raycast(touch.position.x, touch.position.y, raycastFilter, out hit))
+            {
+                // Use hit pose and camera pose to check if hittest is from the
+                // back of the plane, if it is, no need to create the anchor.
+                if ((hit.Trackable is DetectedPlane) &&
+                    Vector3.Dot(firstPersonCamera.transform.position - hit.Pose.position,
+                        hit.Pose.rotation * Vector3.up) < 0)
+                {
+                    Debug.Log("Hit at back of the current DetectedPlane");
+                }
+                else
+                {
+                    GameObject prefab = characterPrefab;
+                    // Instantiate character model at the hit pose.
+                    GameObject characterGameObject = Instantiate(prefab, hit.Pose.position, hit.Pose.rotation);
+
+                    // Create an anchor to allow ARCore to track the hitpoint as understanding of the physical
+                    // world evolves.
+                    Anchor anchor = hit.Trackable.CreateAnchor(hit.Pose);
+
+                    // Make Andy model a child of the anchor.
+                    characterGameObject.transform.parent = anchor.transform;
+                }
             }
         }
     }
