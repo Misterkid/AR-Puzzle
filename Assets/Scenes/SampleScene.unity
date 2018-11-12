@@ -156,6 +156,12 @@ Prefab:
       propertyPath: m_Name
       value: ARCore Device
       objectReference: {fileID: 0}
+    - target: {fileID: 114451889682527732, guid: c10877f7cd5764de18d46d7b777d1faa,
+        type: 2}
+      propertyPath: SessionConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 9c1c97e2ff9fbb9478e53c92559c2a07,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c10877f7cd5764de18d46d7b777d1faa, type: 2}
   m_IsPrefabAsset: 0
@@ -267,6 +273,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstPersonCamera: {fileID: 896679035}
   characterPrefab: {fileID: 1251980582041234, guid: 8c081d787f57ff648bd0371d2e951cf8,
+    type: 2}
+  cubeGameObjectPrefab: {fileID: 1284458100324960, guid: a1fcb1072eccfaf48b53d5e73212c625,
     type: 2}
 --- !u!1 &763703106
 GameObject:
@@ -681,6 +689,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5645b79cc5e4251827ffe171ed4658, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scanPoints: 1
 --- !u!33 &1759795988
 MeshFilter:
   m_ObjectHideFlags: 0
