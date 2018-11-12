@@ -5,6 +5,9 @@ using GoogleARCore;
 
 namespace ARPuzzle
 {
+    /// <summary>
+    /// Our AR controller, currently mostly from google example code.
+    /// </summary>
     public class ArController : MonoBehaviour
     {
         [SerializeField]
@@ -60,7 +63,7 @@ namespace ARPuzzle
                     // world evolves.
                     Anchor anchor = hit.Trackable.CreateAnchor(hit.Pose);
 
-                    // Make Andy model a child of the anchor.
+                    // Make model a child of the anchor.
                     characterGameObject.transform.parent = anchor.transform;
                 }
             }
