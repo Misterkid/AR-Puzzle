@@ -6,7 +6,7 @@ using Vuforia;
 public class ObjectTrackable : DefaultTrackableEventHandler
 {
     [SerializeField]
-    private GameObject objectToSpawn;
+    public GameObject objectToSpawn;
 
     private bool isFound = false;
     // Use this for initialization
