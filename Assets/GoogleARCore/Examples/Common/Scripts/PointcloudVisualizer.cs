@@ -33,7 +33,6 @@ namespace GoogleARCore.Examples.Common
 
         private Vector3[] m_Points = new Vector3[k_MaxPointCount];
 
-        public bool scanPoints = false;
         /// <summary>
         /// Unity start.
         /// </summary>
@@ -49,7 +48,7 @@ namespace GoogleARCore.Examples.Common
         public void Update()
         {
             // Fill in the data to draw the point cloud.
-            if (Frame.PointCloud.IsUpdatedThisFrame && scanPoints)
+            if (Frame.PointCloud.IsUpdatedThisFrame)
             {
                 // Copy the point cloud points for mesh verticies.
                 for (int i = 0; i < Frame.PointCloud.PointCount; i++)
