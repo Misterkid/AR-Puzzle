@@ -27,8 +27,12 @@ namespace ARPuzzle
         private GameObject cubeGameObjectPrefab;
 
         private GameObject mapGameObject;
+
+        [SerializeField]
+        private Vector3 scaling = new Vector3(0.05f, 0.05f, 0.05f);
         void Start()
         {
+            Physics.gravity = Vector3.one;
             //testMesh = testMeshFilter.mesh;
         }
 
@@ -69,8 +73,13 @@ namespace ARPuzzle
                             // Create an anchor to ensure that ARCore keeps tracking this augmented image.
                             Anchor anchor = image.CreateAnchor(image.CenterPose);
                             Debug.Log("Created one " + augmentedImages[i].Name + ":" + augmentedImages[i].DatabaseIndex);
-                            GameObject spawnedCube = Instantiate(cubeGameObjectPrefab, anchor.transform);
+                            Vector3 highPos = anchor.transform.position;
+                            highPos.y += 1;
+
+                            GameObject spawnedCube = Instantiate(cubeGameObjectPrefab, highPos,anchor.transform.rotation, anchor.transform);
+                            Vector3 localScale = spawnedCube.transform.localScale;
                             spawnedCube.transform.SetParent(mapGameObject.transform);
+                            spawnedCube.transform.localScale = localScale;
                             //spawnedCube.transform.position = augmentedImages[i].CenterPose.position;
                             //spawnedCube.transform.rotation = augmentedImages[i].CenterPose.rotation;
 
@@ -136,6 +145,7 @@ namespace ARPuzzle
 
                         // Make model a child of the anchor.
                         mapGameObject.transform.parent = anchor.transform;
+                        mapGameObject.transform.localScale = scaling;
                     }
                 }
             }
