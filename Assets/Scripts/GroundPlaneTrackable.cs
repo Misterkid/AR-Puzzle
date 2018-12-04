@@ -5,8 +5,9 @@ using Vuforia;
 
 public class GroundPlaneTrackable : DefaultTrackableEventHandler
 {
+
     [SerializeField]
-    private Map mapToHide;
+    private GameObject gameObjectToHide;
 
     protected override void Start()
     {
@@ -20,13 +21,13 @@ public class GroundPlaneTrackable : DefaultTrackableEventHandler
 
     protected override void OnTrackingFound()
     {
-        mapToHide.gameObject.SetActive(true);
+        gameObjectToHide.gameObject.SetActive(true);
         //base.OnTrackingFound();
     }
 
     protected override void OnTrackingLost()
     {
-        mapToHide.gameObject.SetActive(false);
+        gameObjectToHide.gameObject.SetActive(false);
         //base.OnTrackingLost();
     }
 

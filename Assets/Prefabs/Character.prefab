@@ -21,6 +21,7 @@ GameObject:
   - component: {fileID: 4156830466740118}
   - component: {fileID: 95398728199369512}
   - component: {fileID: 114698434745739020}
+  - component: {fileID: 65574098302423344}
   m_Layer: 0
   m_Name: Character
   m_TagString: Untagged
@@ -38,7 +39,6 @@ GameObject:
   - component: {fileID: 4392318179207268}
   - component: {fileID: 33263979913155684}
   - component: {fileID: 23636607919802482}
-  - component: {fileID: 136886557009203246}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -56,7 +56,6 @@ GameObject:
   - component: {fileID: 4337170599694732}
   - component: {fileID: 33126877908111836}
   - component: {fileID: 23387676973090668}
-  - component: {fileID: 65686259229862148}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -189,18 +188,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1236044830448226}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
---- !u!65 &65686259229862148
+--- !u!65 &65574098302423344
 BoxCollider:
   m_ObjectHideFlags: 1
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1862900975177056}
+  m_GameObject: {fileID: 1031005581189774}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: 0, z: 0}
+  m_Size: {x: 1, y: 2.05, z: 1}
+  m_Center: {x: 0, y: 0.24, z: 0}
 --- !u!95 &95398728199369512
 Animator:
   serializedVersion: 3
@@ -230,16 +229,3 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6f68d34c7d7ff4429f3bf81caf3aceb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &136886557009203246
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1236044830448226}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: 0.5
-  m_Height: 2
-  m_Direction: 1
-  m_Center: {x: 0, y: 0, z: 0}
