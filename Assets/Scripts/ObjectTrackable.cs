@@ -9,9 +9,11 @@ public class ObjectTrackable : DefaultTrackableEventHandler
     public GameObject objectToSpawn;
 
     private bool isFound = false;
+    private Map map;
     // Use this for initialization
     protected override void Start()
     {
+        map = FindObjectOfType<Map>();
         base.Start();
     }
 	
@@ -69,10 +71,11 @@ public class ObjectTrackable : DefaultTrackableEventHandler
     {
         GameObject spawnedObject = Instantiate(objectToSpawn, null);
         Vector3 higherPos = transform.position;
-        higherPos.y += 2;
+
+        //higherPos.y += 1 * map.transform.localScale.y;
         //spawnedObject.transform.localScale = transform.localScale;
         spawnedObject.transform.position = higherPos;
         spawnedObject.transform.rotation = transform.rotation;
-        spawnedObject.transform.SetParent(FindObjectOfType<Map>().transform);
+        spawnedObject.transform.SetParent(map.transform);
     }
 }
