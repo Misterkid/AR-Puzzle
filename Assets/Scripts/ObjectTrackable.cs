@@ -74,7 +74,7 @@ public class ObjectTrackable : DefaultTrackableEventHandler
         map = FindObjectOfType<Map>();
         if (map != null)
         {
-            higherPos.y += (1 * map.transform.localScale.y);
+            higherPos.y += (5 * map.transform.localScale.y);
         }
         else
         {

@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        Physics.gravity *= scaling;
+        Physics.gravity *= (scaling * 2);
         SpawnLevel();
     }
 	
