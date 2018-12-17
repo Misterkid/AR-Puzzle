@@ -9,6 +9,8 @@ public class LevelManager : MonoBehaviour
     [SerializeField]
     private float scaling = 0.05f;
 
+    public float Scale { get { return scaling; } }
+
     private int levelIndex = 0;
     private Map spawnedMap;
 	// Use this for initialization

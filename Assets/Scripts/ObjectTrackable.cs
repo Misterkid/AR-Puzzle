@@ -9,11 +9,14 @@ public class ObjectTrackable : DefaultTrackableEventHandler
     public GameObject objectToSpawn;
 
     private bool isFound = false;
-    private Map map;
+    //private Map map;
+
+    private LevelManager levelManager;
     // Use this for initialization
     protected override void Start()
     {
 
+        levelManager = Resources.FindObjectsOfTypeAll<LevelManager>()[0];//Find<LevelManager>()
         base.Start();
     }
 	
@@ -71,20 +74,18 @@ public class ObjectTrackable : DefaultTrackableEventHandler
     {
         GameObject spawnedObject = Instantiate(objectToSpawn, null);
         Vector3 higherPos = transform.position;
-        map = FindObjectOfType<Map>();
-        if (map != null)
-        {
-            higherPos.y += (5 * map.transform.localScale.y);
-        }
-        else
-        {
-            higherPos.y += 1;
-        }
 
-        //spawnedObject.transform.localScale = transform.localScale;
+
+        //spawnedObject.transform.localScale = spawnedObject.transform.localScale * levelManager.Scale;
+        spawnedObject.transform.localScale = GetComponentInChildren<Click>().transform.lossyScale;
+        higherPos.y += (spawnedObject.transform.localScale.y * 2);//levelManager.Scale;
+
+        //transform.localScale;
         spawnedObject.transform.position = higherPos;
         spawnedObject.transform.rotation = transform.rotation;
-        if(map != null)
+
+        Map map = FindObjectOfType<Map>();
+        if (map != null)
         {
             spawnedObject.transform.SetParent(map.transform);
         }

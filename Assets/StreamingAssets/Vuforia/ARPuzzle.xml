@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig>
     <Tracking>
+        <ImageTarget name="plankje" size="0.160000 0.080000"/>
         <ImageTarget name="test02" size="0.100000 0.100000"/>
         <ImageTarget name="test01" size="0.100000 0.100000"/>
         <ImageTarget name="blokje.Top" size="0.080000 0.080000"/>
-        <ImageTarget name="blokje.Right" size="0.080000 0.080000"/>
-        <ImageTarget name="blokje.Back" size="0.080000 0.080000"/>
         <ImageTarget name="blokje.Left" size="0.080000 0.080000"/>
         <ImageTarget name="blokje.Front" size="0.080000 0.080000"/>
+        <ImageTarget name="blokje.Back" size="0.080000 0.080000"/>
         <ImageTarget name="blokje.Bottom" size="0.080000 0.080000"/>
+        <ImageTarget name="blokje.Right" size="0.080000 0.080000"/>
         <ImageTarget name="Plank.Top" size="8.000000 12.000000"/>
-        <ImageTarget name="Plank.Right" size="12.000000 3.000000"/>
-        <ImageTarget name="Plank.Back" size="8.000000 3.000000"/>
         <ImageTarget name="Plank.Left" size="12.000000 3.000000"/>
         <ImageTarget name="Plank.Front" size="8.000000 3.000000"/>
+        <ImageTarget name="Plank.Back" size="8.000000 3.000000"/>
         <ImageTarget name="Plank.Bottom" size="8.000000 12.000000"/>
+        <ImageTarget name="Plank.Right" size="12.000000 3.000000"/>
         <ImageTarget name="Blok.Top" size="8.000000 8.000000"/>
-        <ImageTarget name="Blok.Right" size="8.000000 8.000000"/>
-        <ImageTarget name="Blok.Back" size="8.000000 8.000000"/>
         <ImageTarget name="Blok.Left" size="8.000000 8.000000"/>
         <ImageTarget name="Blok.Front" size="8.000000 8.000000"/>
+        <ImageTarget name="Blok.Back" size="8.000000 8.000000"/>
         <ImageTarget name="Blok.Bottom" size="8.000000 8.000000"/>
+        <ImageTarget name="Blok.Right" size="8.000000 8.000000"/>
         <ImageTarget name="BroodBakje.Top" size="12.000000 9.000000"/>
-        <ImageTarget name="BroodBakje.Right" size="9.000000 5.000000"/>
-        <ImageTarget name="BroodBakje.Back" size="12.000000 5.000000"/>
         <ImageTarget name="BroodBakje.Left" size="9.000000 5.000000"/>
         <ImageTarget name="BroodBakje.Front" size="12.000000 5.000000"/>
+        <ImageTarget name="BroodBakje.Back" size="12.000000 5.000000"/>
         <ImageTarget name="BroodBakje.Bottom" size="12.000000 9.000000"/>
+        <ImageTarget name="BroodBakje.Right" size="9.000000 5.000000"/>
         <MultiTarget name="blokje">
             <Part name="blokje.Left" translation="-0.03999999910593033 0 0" rotation="AD: 0 1 0 -90"/>
             <Part name="blokje.Right" translation="0.03999999910593033 0 0" rotation="AD: 0 1 0 90"/>
