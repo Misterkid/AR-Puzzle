@@ -17,11 +17,22 @@ public class Character : MonoBehaviour
 
     [SerializeField]
     private float speed = 2;
+
     [SerializeField]
     private Transform rayCastTransform;
-
     private bool isWalking = false;
-	void Start ()
+
+    [SerializeField]
+    private AudioClip deathAudioClip;
+
+    [SerializeField]
+    private AudioClip oofAudioClip;
+
+
+    [SerializeField]
+    private AudioClip yayAudioClip;
+
+    void Start()
     {
         //rigidbody = GetComponent<Rigidbody>();
         startPosition = transform.localPosition;
@@ -34,8 +45,10 @@ public class Character : MonoBehaviour
     {
         transform.localPosition = startPosition;
         transform.localRotation = startRotation;
-        isWalking = false;
         actions.Stay();
+        isWalking = false;
+        GetComponent<Rigidbody>().useGravity = true;
+        this.gameObject.SetActive(true);
     }
     public void StartWalking()
     {
@@ -43,10 +56,13 @@ public class Character : MonoBehaviour
         actions.Walk();
     }
     // Update is called once per frame
-    void Update ()
+    void Update()
     {
-        if(isWalking)
+        if (isWalking)
         {
+            Debug.Log(GetComponent<Rigidbody>().velocity.y);
+
+
             transform.position = transform.position + (transform.forward * ((speed * transform.lossyScale.x) * Time.deltaTime));
             RaycastHit hit;
             // Does the ray intersect any objects excluding the player layer
@@ -55,30 +71,44 @@ public class Character : MonoBehaviour
                 Trigger trigger = hit.collider.GetComponent<Trigger>();
                 if (trigger == null)
                 {
+                    if (oofAudioClip != null)
+                        AudioSource.PlayClipAtPoint(oofAudioClip, transform.position);
+
+                    actions.Damage();
+                    actions.Walk();
                     Vector3 reflect = Vector3.Reflect(transform.forward, hit.normal);
                     //transform.LookAt(reflect);
                     transform.rotation = Quaternion.LookRotation(reflect);
                 }
             }
         }
+        if(transform.position.y < 0.05f)
+        {
+            GetComponent<Rigidbody>().useGravity = false;
+            isWalking = false;
+            StartCoroutine(Death());
+        }
 
-	}
+    }
 
     private void OnTriggerEnter(Collider other)
     {
         Trigger trigger = other.GetComponent<Trigger>();
-        if(trigger != null)
+        if (trigger != null)
         {
             switch (trigger.GetTriggerType)
             {
                 case Trigger.TriggerType.DEATH:
-                    if (OnDeath != null)
-                        OnDeath();
+                    GetComponent<Rigidbody>().useGravity = false;
+                    isWalking = false;
+                    StartCoroutine(Death());
                     break;
 
                 case Trigger.TriggerType.FINISH:
-                    if (OnFinish != null)
-                        OnFinish();
+                    GetComponent<Rigidbody>().useGravity = false;
+                    isWalking = false;
+
+                    StartCoroutine(Victory());
                     break;
 
                 default:
@@ -88,4 +118,29 @@ public class Character : MonoBehaviour
 
         }
     }
+
+    private IEnumerator Victory()
+    {
+        actions.Jump();
+        if (yayAudioClip != null)
+            AudioSource.PlayClipAtPoint(yayAudioClip, transform.position);
+
+        yield return new WaitForSeconds(3.5f);
+        if (OnFinish != null)
+            OnFinish();
+    }
+
+    private IEnumerator Death()
+    {
+        actions.Death();
+
+        if (deathAudioClip != null)
+            AudioSource.PlayClipAtPoint(deathAudioClip, transform.position);
+
+        yield return new WaitForSeconds(3.5f);
+        this.gameObject.SetActive(false);
+        if (OnDeath != null)
+            OnDeath();
+    }
+
 }

@@ -11,7 +11,8 @@ public class Actions : MonoBehaviour {
 
 	void Awake () {
 		animator = GetComponent<Animator> ();
-	}
+
+    }
 
 	public void Stay () {
 		animator.SetBool("Aiming", false);
@@ -68,4 +69,10 @@ public class Actions : MonoBehaviour {
 		animator.SetBool ("Squat", !animator.GetBool("Squat"));
 		animator.SetBool("Aiming", false);
 	}
+
+    public void PlayClip(AudioClip audioClip)
+    {
+        if(audioClip != null)
+            AudioSource.PlayClipAtPoint(audioClip, transform.position);
+    }
 }

@@ -4,20 +4,37 @@ using UnityEngine;
 
 public class SpecialCube : MonoBehaviour
 {
-	// Use this for initialization
-	void Start ()
-    {
 
-	}
+    [SerializeField]
+    private AudioClip appearAudioClip;
+
+    [SerializeField]
+    private AudioClip hitAudioClip;
+
+    // Use this for initialization
+    void Start ()
+    {
+        if (appearAudioClip != null)
+            AudioSource.PlayClipAtPoint(appearAudioClip, transform.position);
+    }
 	
 	// Update is called once per frame
 	void Update ()
     {
-
+        if(transform.position.y < 0)
+        {
+            Destroy(this.gameObject);
+        }
 	}
 
     private void OnMouseDown()
     {
         Destroy(this.gameObject);
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (hitAudioClip != null)
+            AudioSource.PlayClipAtPoint(hitAudioClip, transform.position);
     }
 }

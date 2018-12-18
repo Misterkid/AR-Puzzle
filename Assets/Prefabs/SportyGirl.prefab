@@ -1329,7 +1329,7 @@ Transform:
   m_GameObject: {fileID: 1785204853}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.15, y: 0.15, z: 0.15}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1160173247}
   - {fileID: 730036409}
@@ -1349,8 +1349,8 @@ Animator:
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: b6c33e1d6632025468fb37a04e312606, type: 3}
   m_Controller: {fileID: 0}
-  m_CullingMode: 0
-  m_UpdateMode: 0
+  m_CullingMode: 1
+  m_UpdateMode: 1
   m_ApplyRootMotion: 0
   m_LinearVelocityBlending: 0
   m_WarningMessage: 
@@ -1402,6 +1402,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   rayCastTransform: {fileID: 5424799548744787397}
+  deathAudioClip: {fileID: 8300000, guid: dcc175e8ee196484babfb23e048e065f, type: 3}
+  oofAudioClip: {fileID: 8300000, guid: 848741a865c0f79439fafd9829098def, type: 3}
 --- !u!54 &7023375607259188275
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1417,7 +1419,7 @@ Rigidbody:
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
-  m_CollisionDetection: 0
+  m_CollisionDetection: 2
 --- !u!65 &1136102905770803074
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1429,8 +1431,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 0.42, y: 0.79, z: 0.3}
-  m_Center: {x: 0, y: 0.39, z: 0}
+  m_Size: {x: 0.29, y: 1, z: 0.11}
+  m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!1 &1786628318
 GameObject:
   m_ObjectHideFlags: 0
