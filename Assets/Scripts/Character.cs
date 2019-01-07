@@ -32,6 +32,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     private AudioClip yayAudioClip;
 
+    private bool isDead = false;
+
     void Start()
     {
         //rigidbody = GetComponent<Rigidbody>();
@@ -48,6 +50,7 @@ public class Character : MonoBehaviour
         actions.Stay();
         isWalking = false;
         GetComponent<Rigidbody>().useGravity = true;
+        isDead = false;
         this.gameObject.SetActive(true);
     }
     public void StartWalking()
@@ -60,9 +63,6 @@ public class Character : MonoBehaviour
     {
         if (isWalking)
         {
-            Debug.Log(GetComponent<Rigidbody>().velocity.y);
-
-
             transform.position = transform.position + (transform.forward * ((speed * transform.lossyScale.x) * Time.deltaTime));
             RaycastHit hit;
             // Does the ray intersect any objects excluding the player layer
@@ -82,23 +82,31 @@ public class Character : MonoBehaviour
                 }
             }
         }
-        if(transform.position.y < 0.05f)
+
+        /*
+        if(transform.position.y < 0.05f && !isDead)
         {
+            isDead = true;
             GetComponent<Rigidbody>().useGravity = false;
             isWalking = false;
             StartCoroutine(Death());
-        }
+        }*/
 
     }
 
     private void OnTriggerEnter(Collider other)
     {
+
+        if (isDead)
+            return;
+
         Trigger trigger = other.GetComponent<Trigger>();
         if (trigger != null)
         {
             switch (trigger.GetTriggerType)
             {
                 case Trigger.TriggerType.DEATH:
+                    isDead = true;
                     GetComponent<Rigidbody>().useGravity = false;
                     isWalking = false;
                     StartCoroutine(Death());
