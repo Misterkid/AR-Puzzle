@@ -11,6 +11,7 @@ public class GroundPlaneTrackable : DefaultTrackableEventHandler
 
     protected override void Start()
     {
+
         base.Start();
     }
 

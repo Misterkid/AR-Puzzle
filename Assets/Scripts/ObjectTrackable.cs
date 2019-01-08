@@ -12,11 +12,17 @@ public class ObjectTrackable : DefaultTrackableEventHandler
     //private Map map;
 
     private LevelManager levelManager;
+
+    private GameObject highLightObject;
     // Use this for initialization
     protected override void Start()
     {
 
         levelManager = Resources.FindObjectsOfTypeAll<LevelManager>()[0];//Find<LevelManager>()
+        /*
+        highLightObject = Instantiate(transform.GetChild(0).gameObject);
+        Destroy(highLightObject.GetComponent<Click>());
+        */
         base.Start();
     }
 	
