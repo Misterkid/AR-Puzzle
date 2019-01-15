@@ -19,17 +19,37 @@ public class ObjectTrackable : DefaultTrackableEventHandler
     {
 
         levelManager = Resources.FindObjectsOfTypeAll<LevelManager>()[0];//Find<LevelManager>()
-        /*
+        
         highLightObject = Instantiate(transform.GetChild(0).gameObject);
         Destroy(highLightObject.GetComponent<Click>());
-        */
+        Destroy(highLightObject.GetComponent<Collider>());
+        highLightObject.SetActive(false);
+
         base.Start();
     }
 	
 	// Update is called once per frame
 	void Update ()
     {
-		
+        RaycastHit hit;
+        if(Physics.Raycast(transform.position,Vector3.down,out hit,200))
+        {
+            Map map = hit.collider.GetComponent<Map>();
+            if(map != null)
+            {
+                if(!highLightObject.activeSelf)
+                    highLightObject.SetActive(true);
+
+                highLightObject.transform.SetParent(map.transform);
+                highLightObject.transform.localScale = GetComponentInChildren<Click>().transform.lossyScale;
+                transform.position = hit.point;
+            }
+            else
+            {
+                highLightObject.SetActive(false);
+            }
+
+        }
 	}
 
     protected override void OnTrackingFound()
@@ -74,6 +94,7 @@ public class ObjectTrackable : DefaultTrackableEventHandler
     {
         base.OnTrackingLost();
         isFound = false;
+        highLightObject.SetActive(false);
     }
 
     private void OnMouseDown()

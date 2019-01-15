@@ -11,6 +11,7 @@ public class LevelManager : MonoBehaviour
 
     public float Scale { get { return scaling; } }
 
+
     private int levelIndex = 0;
     private Map spawnedMap;
 	// Use this for initialization
@@ -26,9 +27,19 @@ public class LevelManager : MonoBehaviour
 		
 	}
 
+    public void ApplyScaling(float scaleToAdd)
+    {
+       // Physics.gravity *= (scaling * 2);
+
+        if (spawnedMap != null)
+            spawnedMap.transform.localScale += new Vector3(scaleToAdd, scaleToAdd, scaleToAdd);
+    }
+
+
     private void SpawnLevel()
     {
         spawnedMap = Instantiate(levels[levelIndex],transform);
+
         spawnedMap.transform.localScale *= scaling;
 
         spawnedMap.OnFinish += SpawnedMap_OnFinish;
