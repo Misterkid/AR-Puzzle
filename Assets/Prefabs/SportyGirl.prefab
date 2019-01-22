@@ -1405,6 +1405,7 @@ MonoBehaviour:
   deathAudioClip: {fileID: 8300000, guid: dcc175e8ee196484babfb23e048e065f, type: 3}
   oofAudioClip: {fileID: 8300000, guid: 848741a865c0f79439fafd9829098def, type: 3}
   yayAudioClip: {fileID: 8300000, guid: 6b2e036392e90f24490f87178e0d136b, type: 3}
+  raycastDistance: 0.25
 --- !u!54 &7023375607259188275
 Rigidbody:
   m_ObjectHideFlags: 0

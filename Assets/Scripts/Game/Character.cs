@@ -34,6 +34,9 @@ public class Character : MonoBehaviour
 
     private bool isDead = false;
 
+    [SerializeField]
+    private float raycastDistance = 0.30f;
+
     void Start()
     {
         //rigidbody = GetComponent<Rigidbody>();
@@ -66,7 +69,7 @@ public class Character : MonoBehaviour
             transform.position = transform.position + (transform.forward * ((speed * transform.lossyScale.x) * Time.deltaTime));
             RaycastHit hit;
             // Does the ray intersect any objects excluding the player layer
-            if (Physics.Raycast(rayCastTransform.position, rayCastTransform.TransformDirection(Vector3.forward), out hit, 1 * transform.lossyScale.x))
+            if (Physics.Raycast(rayCastTransform.position, rayCastTransform.TransformDirection(Vector3.forward), out hit, raycastDistance * transform.lossyScale.x))
             {
                 Trigger trigger = hit.collider.GetComponent<Trigger>();
                 if (trigger == null)
